@@ -22,15 +22,14 @@ npm i -g @nestjs/cli
 ↑ Instalación de NestJS
 
 ```console
-nest new [nombre de la app]
+nest new [app name]
 ```
 ↑ Creación del proyecto NestJS
 
 ```console
-nest new [nombre de la app]
+nest generate controller [controller name]
 ```
-↑ Creación del proyecto NestJS
-
+↑ Creación del controlador
 
 <br/>
 
@@ -39,7 +38,6 @@ nest new [nombre de la app]
 npm run start
 ```
 ↑ Inicia el proyecto
-
 
 <br/>
 
