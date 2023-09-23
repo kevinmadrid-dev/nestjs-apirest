@@ -31,6 +31,11 @@ nest generate controller [controller name]
 ```
 ↑ Creación del controlador
 
+```console
+npm install --save @nestjs/typeorm typeorm mysql
+```
+↑ Instalar typeorm para trabajar con MySQL
+
 <br/>
 
 ## ⚙️ Comandos para ejecutar el apiRest
