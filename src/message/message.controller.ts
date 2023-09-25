@@ -1,10 +1,10 @@
 import { Controller, Post, Get, Put, Delete, Body } from '@nestjs/common';
-import { CreateMessage } from './dto/create_message/create_message';
+import { create_message } from './dto/create_message/create_message';
 
 @Controller('message')
 export class MessageController {
     @Post()
-    create(@Body() CreateMessage: CreateMessage) {
+    create(@Body() CreateMessage: create_message) {
         return "Message created"
     }
 
@@ -14,7 +14,7 @@ export class MessageController {
     }
 
     @Put(":id")
-    update(@Body() UpdateMessae: CreateMessage) {
+    update(@Body() UpdateMessae: create_message) {
         return "Message updated"
     }
 
