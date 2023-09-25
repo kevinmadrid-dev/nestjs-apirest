@@ -23,6 +23,16 @@ npm i -g @nestjs/cli
 ↑ Instalación de NestJS
 
 ```console
+npm install --save @nestjs/typeorm typeorm mysql
+```
+↑ Instalación typeorm para trabajar con MySQL
+
+```console
+npm install mysql2
+```
+↑ Actualizar MySQL2
+
+```console
 nest new [app name]
 ```
 ↑ Creación del proyecto NestJS
@@ -33,9 +43,9 @@ nest generate controller [controller name]
 ↑ Creación del controlador
 
 ```console
-npm install --save @nestjs/typeorm typeorm mysql
+nest generate service [service name]
 ```
-↑ Instalar typeorm para trabajar con MySQL
+↑ Creación del servicio
 
 <br/>
 
