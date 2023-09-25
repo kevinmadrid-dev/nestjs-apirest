@@ -1,25 +1,74 @@
-import { Controller, Post, Get, Put, Delete, Body } from '@nestjs/common';
-import { create_message } from './dto/create_message/create_message';
+import {
+  Controller,
+  Post,
+  Get,
+  Put,
+  Delete,
+  Body,
+  Res,
+  Param,
+  HttpStatus
+} from "@nestjs/common"
+import { create_message } from "./dto/create_message/create_message"
+import { MessageService } from "./message.service"
 
-@Controller('message')
+@Controller("message")
 export class MessageController {
-    @Post()
-    create(@Body() CreateMessage: create_message) {
-        return "Message created"
-    }
+  constructor(private ServiceMessage: MessageService) {}
 
-    @Get()
-    getAll() {
-        return "Message got"
-    }
+  @Post()
+  create(@Body() create_message: create_message, @Res() response) {
+    this.ServiceMessage.createMessage(create_message)
+      .then((message) => {
+        response.status(HttpStatus.CREATED).json(message)
+      })
+      .catch(
+        response
+          .status(HttpStatus.FORBIDDEN)
+          .json({ message: "Error en create message" })
+      )
+  }
 
-    @Put(":id")
-    update(@Body() UpdateMessae: create_message) {
-        return "Message updated"
-    }
+  @Get()
+  getAll(@Res() response) {
+    this.ServiceMessage.getAll()
+      .then((messageList) => {
+        response.status(HttpStatus.OK).json(messageList)
+      })
+      .catch(
+        response
+          .status(HttpStatus.FORBIDDEN)
+          .json({ message: "Error en getAll message" })
+      )
+  }
 
-    @Delete(":id")
-    delete() {
-        return "Message deleted"
-    }
+  @Put(":id")
+  update(
+    @Body() updateMessage: create_message,
+    @Res() response,
+    @Param("id") idMessage
+  ) {
+    this.ServiceMessage.updateMessage(idMessage, updateMessage)
+      .then((message) => {
+        response.status(HttpStatus.OK).json(message)
+      })
+      .catch(
+        response
+          .status(HttpStatus.FORBIDDEN)
+          .json({ message: "Error en update message" })
+      )
+  }
+
+  @Delete(":id")
+  delete(@Res() response, @Param("id") idMessage) {
+    this.ServiceMessage.deleteMessage(idMessage)
+      .then((res) => {
+        response.status(HttpStatus.OK).json(res)
+      })
+      .catch(
+        response
+          .status(HttpStatus.FORBIDDEN)
+          .json({ message: "Error en delete message" })
+      )
+  }
 }
