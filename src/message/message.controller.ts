@@ -17,58 +17,69 @@ export class MessageController {
   constructor(private ServiceMessage: MessageService) {}
 
   @Post()
-  create(@Body() create_message: create_message, @Res() response) {
-    this.ServiceMessage.createMessage(create_message)
-      .then((message) => {
-        response.status(HttpStatus.CREATED).json(message)
-      })
-      .catch(
-        response
-          .status(HttpStatus.FORBIDDEN)
-          .json({ message: "Error en create message" })
-      )
+  async create(@Body() create_message: create_message, @Res() response) {
+    try {
+      const message = await this.ServiceMessage.createMessage(create_message)
+      response.status(HttpStatus.CREATED).json(message)
+    } catch (error) {
+      response
+        .status(HttpStatus.FORBIDDEN)
+        .json({ message: "Error en create message", error })
+    }
   }
 
   @Get()
-  getAll(@Res() response) {
-    this.ServiceMessage.getAll()
-      .then((messageList) => {
-        response.status(HttpStatus.OK).json(messageList)
-      })
-      .catch(
-        response
-          .status(HttpStatus.FORBIDDEN)
-          .json({ message: "Error en getAll message" })
-      )
+  async getAll(@Res() response) {
+    try {
+      const messageList = await this.ServiceMessage.getAll()
+      response.status(HttpStatus.OK).json(messageList)
+    } catch (error) {
+      response
+        .status(HttpStatus.FORBIDDEN)
+        .json({ message: "Error en getAll message" })
+    }
+  }
+
+  @Get(":id")
+  async get(@Res() response, @Param("id") idMessage) {
+    try {
+      const message = await this.ServiceMessage.getById(idMessage)
+      response.status(HttpStatus.OK).json(message)
+    } catch (error) {
+      response
+        .status(HttpStatus.FORBIDDEN)
+        .json({ message: "Error en getAll message" })
+    }
   }
 
   @Put(":id")
-  update(
+  async update(
     @Body() updateMessage: create_message,
     @Res() response,
     @Param("id") idMessage
   ) {
-    this.ServiceMessage.updateMessage(idMessage, updateMessage)
-      .then((message) => {
-        response.status(HttpStatus.OK).json(message)
-      })
-      .catch(
-        response
-          .status(HttpStatus.FORBIDDEN)
-          .json({ message: "Error en update message" })
+    try {
+      const message = await this.ServiceMessage.updateMessage(
+        idMessage,
+        updateMessage
       )
+      response.status(HttpStatus.OK).json(message)
+    } catch (error) {
+      response
+        .status(HttpStatus.FORBIDDEN)
+        .json({ message: "Error en update message", error })
+    }
   }
 
   @Delete(":id")
   delete(@Res() response, @Param("id") idMessage) {
-    this.ServiceMessage.deleteMessage(idMessage)
-      .then((res) => {
-        response.status(HttpStatus.OK).json(res)
-      })
-      .catch(
-        response
-          .status(HttpStatus.FORBIDDEN)
-          .json({ message: "Error en delete message" })
-      )
+    try {
+      const res = this.ServiceMessage.deleteMessage(idMessage)
+      response.status(HttpStatus.OK).json(res)
+    } catch (error) {
+      response
+        .status(HttpStatus.FORBIDDEN)
+        .json({ message: "Error en delete message", error })
+    }
   }
 }

@@ -23,6 +23,12 @@ export class MessageService {
     return await this.messageRepository.find()
   }
 
+  async getById(idMessage: number): Promise<Message> {
+    return await this.messageRepository.findOne({
+      where: { id: idMessage }
+    })
+  }
+
   async updateMessage(
     idMessage: number,
     updateMessage: create_message
