@@ -1,7 +1,7 @@
 # ApiREST con NestJs: NodeJs + Typescript
 
 ## 📦 Sobre el repositorio
-Proyecto BackEnd, creación e implementación de una API REST utilizando NestJs: NodeJs + Typescript
+Proyecto BackEnd, creación e implementación de una API REST utilizando NestJs: NodeJs + Typescript, además de complementarlo con el uso de PHP/MyAdmin y Postman. Api de simulación para un control de mensajes.
 
 ## ✔️ [El respositorio aquí](https://github.com/K3yJey/apiREST_NestJS.git)
 
@@ -14,7 +14,7 @@ Proyecto BackEnd, creación e implementación de una API REST utilizando NestJs:
 * ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
 
 ## 📌 Comentarios adicionales
-Proyecto en progreso.
+Proyecto finalizado.
 
 ## ⚙️ Comandos necesarios
 ```console
